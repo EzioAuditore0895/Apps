@@ -14,12 +14,15 @@ export class BaseService<T extends Base> {
   }
 
   getAll(): Promise<T[]> {
+    console.log(`${this.TAG} > getAll`);
     return new Promise((resolve, reject) => {
+      console.log(`${this.TAG} > getAll > db > Promise`, this.reference);
       db.collection(`${this.reference}`)
         .get()
-        .then((querySnapshot) => {
+        .then((querySnapshot: any) => {
+          // console.log(`${this.TAG} > getAll > querySnapshot`, querySnapshot);
           const entities: T[] = [];
-          querySnapshot.forEach(function (doc) {
+          querySnapshot.forEach((doc: any) => {
             // doc.data() is never undefined for query doc snapshots
             // console.log(doc.id, " => ", doc.data());
             entities.push(<T>doc.data());
@@ -27,6 +30,7 @@ export class BaseService<T extends Base> {
           resolve(entities);
         })
         .catch(() => {
+          console.error(`${this.TAG} > getAll > error`);
           reject();
         });
     });
