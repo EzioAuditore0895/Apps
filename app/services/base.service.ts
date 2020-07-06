@@ -41,7 +41,7 @@ export class BaseService<T extends Base> {
       db.collection(`${this.reference}`)
         .doc(`${id}`)
         .get()
-        .then((doc) => {
+        .then((doc: any) => {
           const entity: T | null = doc.exists ? <T>doc.data() : null;
           resolve(entity);
         })
