@@ -1,27 +1,33 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Button, Input, Icon, Image } from "react-native-elements";
 import { isEmpty } from "lodash";
 import * as firebase from "firebase";
+import styles from "./loginForm.style";
+import Loading from "../../Loading";
 
 export default function LoginForm(props: any) {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState(defaultFormValue);
+  const [isLoading, setIsLoading] = useState(false);
   const { toastRef } = props;
 
   const onSubmit = () => {
     if (isEmpty(formData.user) || isEmpty(formData.password)) {
-      // toastRef.current.show("Todos los campos son obligatorios");
-      toastRef.current.show("hello world!");
+      toastRef.current.show("Todos los campos son obligatorios");
     } else {
+      setIsLoading(true);
       firebase
         .auth()
         .signInWithEmailAndPassword(formData.user, formData.password)
         .then(() => {
+          setIsLoading(false);
           console.log("OK");
         })
         .catch(() => {
+          setIsLoading(false);
           console.log("No login");
+          toastRef.current.show("Email o contraseña incorrectos");
         });
     }
   };
@@ -35,21 +41,32 @@ export default function LoginForm(props: any) {
   return (
     <View style={styles.formContainer}>
       <Input
-        placeholder="usuario"
-        leftIcon={{ type: "font-awesome", name: "user-circle-o" }}
+        placeholder="Usuario"
+        leftIcon={{
+          type: "font-awesome",
+          name: "user-circle-o",
+          color: "#1B4065",
+        }}
         containerStyle={styles.inputForm}
+        inputContainerStyle={styles.inputContainer}
         onChange={(e) => onChange(e, "user")}
+        leftIconContainerStyle={styles.iconLeft}
+        placeholderTextColor="#1B4065"
       ></Input>
       <Input
-        placeholder="contraseña"
+        placeholder="Contraseña"
         containerStyle={styles.inputForm}
+        inputContainerStyle={styles.inputContainer}
         secureTextEntry={showPassword ? false : true}
-        leftIcon={{ type: "material", name: "lock" }}
+        leftIcon={{ type: "material", name: "lock", color: "#1B4065" }}
         onChange={(e) => onChange(e, "password")}
+        leftIconContainerStyle={styles.iconLeft}
+        placeholderTextColor="#1B4065"
         rightIcon={
           <Icon
             type="material-community"
             name={showPassword ? "eye-off-outline" : "eye-outline"}
+            color="#1B4065"
             onPress={() => setShowPassword(!showPassword)}
           ></Icon>
         }
@@ -60,6 +77,7 @@ export default function LoginForm(props: any) {
         buttonStyle={styles.btnLogin}
         onPress={onSubmit}
       ></Button>
+      <Loading isVisible={isLoading} text="Iniciando sesión" />
     </View>
   );
 }
@@ -70,23 +88,3 @@ function defaultFormValue() {
     password: "",
   };
 }
-
-const styles = StyleSheet.create({
-  formContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30,
-  },
-  inputForm: {
-    width: "100%",
-    marginTop: 20,
-  },
-  btnContainerLogin: {
-    marginTop: 20,
-    width: "95%",
-  },
-  btnLogin: {
-    backgroundColor: "#00a680",
-  },
-});
