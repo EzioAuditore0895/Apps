@@ -7,6 +7,7 @@ import styles from "./loginForm.style";
 import Loading from "../../Loading";
 
 export default function LoginForm(props: any) {
+  const TAG = "LoginForm";
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState(defaultFormValue);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +30,37 @@ export default function LoginForm(props: any) {
           console.log("No login");
           toastRef.current.show("Email o contraseña incorrectos");
         });
+      // const body: any = {
+      //   grant_type: "password",
+      //   username: formData.user,
+      //   password: formData.password,
+      // };
+      // const formBody = [];
+      // for (const key in body) {
+      //   var encodedKey = encodeURIComponent(key);
+      //   var encodedValue = encodeURIComponent(body[key]);
+      //   formBody.push(encodedKey + "=" + encodedValue);
+      // }
+      // fetch("https://api.cirmedsa.net:44314/token", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/x-www-form-urlencoded",
+      //   },
+      //   body: formBody.join("&"),
+      // })
+      //   .then((response) => {
+      //     console.log("OK");
+      //     console.log(response);
+      //     return response.json();
+      //   }) // promise
+      //   .then((json) => () => {
+      //     console.log(`${TAG} > login > success > json`, json);
+      //     setIsLoading(false);
+      //   })
+      //   .catch(() => {
+      //     console.error(`${TAG} > login > error`);
+      //     setIsLoading(false);
+      //   });
     }
   };
 
