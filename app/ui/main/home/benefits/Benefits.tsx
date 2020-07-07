@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
 import { BenefitService } from "../../../../services/benefits/benefit.service";
 import { Benefit } from "../../../../models/benefits/benefit.model";
-import { Button, Input, Icon } from "react-native-elements";
-import * as firebase from "firebase";
+import { size } from "lodash";
+import BenefitItem from "./BenefitItem";
+import styles from "../../../initializing/initializing.style";
 
 export default function Benefits() {
   const TAG = "Benefits";
@@ -22,14 +29,21 @@ export default function Benefits() {
       });
   }, []);
 
-  const onSubmit = () => {
-    firebase.auth().signOut();
-  };
-
   return (
     <View>
-      <Text>Benefits...</Text>
-      <Button title="LogOut" onPress={onSubmit}></Button>
+      {size(benefits) > 0 ? (
+        <FlatList
+          data={benefits}
+          renderItem={(benefit) => <BenefitItem benefit={benefit} />}
+          keyExtractor={(item, index) => index.toString()}
+          style={{ padding: 12 }}
+        />
+      ) : (
+        <View style={styles.loading}>
+          <ActivityIndicator size="large" />
+          <Text>Cargando beneficios...</Text>
+        </View>
+      )}
     </View>
   );
 }
