@@ -1,13 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image } from "react-native";
 import styles from "./benefit-item.style";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function BenefitItem(props: any) {
   const TAG = "BenefitItem";
-  const { benefit } = props;
+  const { benefit, navigation } = props;
+  const { url, title, description, discountRate } = benefit.item;
   console.log(`${TAG} > benefit`, benefit);
+
+  const goBenefitDetail = () => {
+    navigation.navigate("benefitsdetail", {
+      title,
+      url,
+      description,
+      discountRate,
+    });
+  };
+
   return (
-    <View>
+    <TouchableOpacity onPress={goBenefitDetail}>
       <Image
         source={{ uri: benefit.item.url }}
         style={{ height: 150, borderRadius: 10 }}
@@ -21,6 +33,6 @@ export default function BenefitItem(props: any) {
           <Text>{benefit.item.description}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
