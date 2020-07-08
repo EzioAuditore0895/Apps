@@ -9,6 +9,7 @@ import Dialog, {
   DialogFooter,
   DialogButton,
 } from "react-native-popup-dialog";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function BenefitDetail(props: any) {
   const TAG = "BenefitDetail";
@@ -16,6 +17,7 @@ export default function BenefitDetail(props: any) {
   const { url, title, description, discountRate } = route.params;
   const benefitService = new BenefitService();
   const screenWidth = Dimensions.get("window").width;
+  const heigth = Dimensions.get("window").height / 4;
   const screenHeigth = Dimensions.get("window").height / 4;
   navigation.setOptions({ title: title });
 
@@ -23,7 +25,7 @@ export default function BenefitDetail(props: any) {
 
   console.log("Props>>>>>", url);
   return (
-    <View style={styles.viewBody}>
+    <ScrollView style={{ width: screenWidth, height: heigth }}>
       <Image
         source={{ uri: url }}
         style={{ width: screenWidth, height: screenHeigth }}
@@ -85,7 +87,7 @@ export default function BenefitDetail(props: any) {
           <Text style={styles.description}>para obtener el descuento</Text>
         </DialogContent>
       </Dialog>
-    </View>
+    </ScrollView>
   );
 }
 
