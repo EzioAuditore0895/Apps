@@ -19,8 +19,8 @@ export default function Initializing() {
   }, []);
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color="#00a680" />
-      <Text>Iniciando...</Text>
+      <ActivityIndicator size="large" color="#fff" />
+      <Text style={{ color: "#fff", fontSize: 18 }}>Iniciando...</Text>
     </View>
   );
 }
