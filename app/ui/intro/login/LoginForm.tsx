@@ -52,6 +52,7 @@ export default function LoginForm(props: any) {
         onChange={(e) => onChange(e, "user")}
         leftIconContainerStyle={styles.iconLeft}
         placeholderTextColor="#1B4065"
+        autoCapitalize="none"
       ></Input>
       <Input
         placeholder="Contraseña"
@@ -62,6 +63,7 @@ export default function LoginForm(props: any) {
         onChange={(e) => onChange(e, "password")}
         leftIconContainerStyle={styles.iconLeft}
         placeholderTextColor="#1B4065"
+        autoCapitalize="none"
         rightIcon={
           <Icon
             type="material-community"

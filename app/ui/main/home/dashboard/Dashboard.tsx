@@ -6,11 +6,15 @@ import {
   ImageBackground,
   Image,
   Dimensions,
+  TouchableOpacity,
 } from "react-native";
 import Carousel from "../dashboard/DashboardCarousel";
 import { Divider } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native";
+import styles from "./Dashboard.style";
 
 export default function Dashboard() {
+  const navigation = useNavigation();
   const screenWidth = Dimensions.get("window").width;
   const images = [
     "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
@@ -18,110 +22,59 @@ export default function Dashboard() {
     "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
     "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
   ];
-  console.log("Tamaño", screenWidth);
+  //console.log("Tamaño", screenWidth);
   return (
     <ImageBackground
       source={require("../../../../../assets/home/background_home.png")}
       style={{ flex: 1 }}
     >
       <View style={styles.viewBody}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            marginTop: 40,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "column",
-              backgroundColor: "#0F70CE",
-              justifyContent: "center",
-              paddingLeft: 50,
-              borderRadius: 20,
-              paddingRight: 50,
-              paddingBottom: 5,
-              paddingTop: 5,
-              marginRight: 20,
-            }}
-          >
+        <View style={styles.viewAgendaConsult}>
+          <TouchableOpacity style={styles.viewMiAgenda}>
             <Image
               source={require("../../../../../assets/home/mi_agenda.png")}
-              style={{ width: 70, height: 70 }}
+              style={styles.images}
             />
             <Text style={{ textAlign: "center", color: "#329BF8" }}>Mi</Text>
             <Text style={{ textAlign: "center", color: "white" }}>Agenda</Text>
-          </View>
+          </TouchableOpacity>
 
-          <View
-            style={{
-              flexDirection: "column",
-              backgroundColor: "#0F70CE",
-              justifyContent: "center",
-              paddingLeft: 50,
-              borderRadius: 20,
-              paddingRight: 50,
-              paddingBottom: 5,
-              paddingTop: 5,
-            }}
-          >
+          <TouchableOpacity style={styles.viewMiConsultorio}>
             <Image
               source={require("../../../../../assets/home/mi_consultorio.png")}
-              style={{ width: 70, height: 70 }}
+              style={styles.images}
             />
             <Text style={{ textAlign: "center", color: "#329BF8" }}>Mis</Text>
             <Text style={{ textAlign: "center", fontSize: 12, color: "white" }}>
               Consultorios
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
-        <View
-          style={{ flexDirection: "row", justifyContent: "center", margin: 20 }}
-        >
-          <View
-            style={{
-              flexDirection: "column",
-              backgroundColor: "#0F70CE",
-              justifyContent: "center",
-              paddingLeft: 50,
-              borderRadius: 20,
-              paddingRight: 50,
-              paddingBottom: 5,
-              paddingTop: 5,
-              marginRight: 20,
-            }}
-          >
+        <View style={styles.viewProfesionBeneficio}>
+          <TouchableOpacity style={styles.viewMiProfesion}>
             <Image
               source={require("../../../../../assets/home/mi_profesion.png")}
-              style={{ width: 70, height: 70 }}
+              style={styles.images}
             />
             <Text style={{ textAlign: "center", color: "#329BF8" }}>Mis</Text>
             <Text style={{ textAlign: "center", color: "white" }}>
               Profesiones
             </Text>
-          </View>
+          </TouchableOpacity>
 
-          <View
-            style={{
-              flexDirection: "column",
-              backgroundColor: "#0F70CE",
-              justifyContent: "center",
-              paddingLeft: 50,
-              borderRadius: 20,
-              paddingRight: 50,
-              paddingBottom: 5,
-              paddingTop: 5,
-            }}
+          <TouchableOpacity
+            style={styles.viewMiBeneficio}
+            onPress={() => navigation.navigate("benefits")}
           >
             <Image
               source={require("../../../../../assets/home/mi_beneficio.png")}
-              style={{ width: 70, height: 70 }}
+              style={styles.images}
             />
             <Text style={{ textAlign: "center", color: "#329BF8" }}>Mis</Text>
             <Text style={{ textAlign: "center", color: "white" }}>
               Beneficios
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
 
         <Divider style={styles.divider} />
@@ -133,35 +86,10 @@ export default function Dashboard() {
         </View>
         <Carousel
           arrayImages={images}
-          height={250}
+          height={120}
           width={screenWidth}
         ></Carousel>
       </View>
     </ImageBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  viewBody: {
-    flex: 1,
-    marginTop: 40,
-  },
-  divider: {
-    backgroundColor: "gray",
-    marginRight: 40,
-    marginLeft: 40,
-  },
-  viewTitle: {
-    padding: 10,
-    marginLeft: 40,
-  },
-  description: {
-    marginTop: 5,
-    color: "#2884DE",
-  },
-  name: {
-    fontSize: 30,
-    color: "white",
-    fontWeight: "bold",
-  },
-});
