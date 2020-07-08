@@ -1,7 +1,17 @@
 import createStyles from "../../../../base/base.style";
 
 const styles = createStyles({
-  loading: {},
+  loading: {
+    marginTop: 10,
+    marginBottom: 10,
+    alignItems: "center",
+  },
+  listStyle: {
+    padding: 20,
+  },
+  listConteinerStyle: {
+    paddingBottom: 20,
+  },
 });
 
 export default styles;
