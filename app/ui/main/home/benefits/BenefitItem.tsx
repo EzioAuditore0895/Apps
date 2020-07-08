@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image } from "react-native";
-import styles from "./benefit-item.style";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import styleItems from "./benefit-item.style";
+import styles from "../../../initializing/initializing.style";
 
 export default function BenefitItem(props: any) {
   const TAG = "BenefitItem";
   const { benefit } = props;
   console.log(`${TAG} > benefit`, benefit);
+
+  const goBeneficio = () => {
+    console.log("goooo");
+  };
+
   return (
-    <View>
+    <TouchableOpacity onPress={goBeneficio}>
       <Image
         source={{ uri: benefit.item.url }}
-        style={{ height: 150, borderRadius: 10 }}
+        style={styleItems.benefitImage}
       />
-      <View style={{ flex: 1, flexDirection: "row", paddingHorizontal: 25 }}>
-        <Text style={{ fontSize: 48, color: "#2058A7" }}>
-          {benefit.item.discountRate}%
-        </Text>
-        <View style={{ justifyContent: "center", marginLeft: 12 }}>
-          <Text>{benefit.item.title}</Text>
-          <Text>{benefit.item.description}</Text>
+      <View style={styleItems.benefitView}>
+        <Text style={styleItems.benefitText}>{benefit.item.discountRate}%</Text>
+        <View style={styleItems.benefitV}>
+          <Text style={styleItems.title}>{benefit.item.title}</Text>
+          <Text style={styleItems.description}>{benefit.item.description}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }

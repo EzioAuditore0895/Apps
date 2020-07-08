@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "react-native-elements";
 import { createStackNavigator } from "@react-navigation/stack";
 import Benefits from "./benefits/Benefits";
 
@@ -10,7 +11,11 @@ export default function HomeStackNavigator() {
       <Stack.Screen
         name="benefits"
         component={Benefits}
-        options={{ title: "Beneficios" }}
+        options={{
+          title: "Beneficios",
+          headerTitleStyle: { color: "#FFFCFE" },
+          headerStyle: { backgroundColor: "#0C4B9C", height: 130 },
+        }}
       />
     </Stack.Navigator>
   );

@@ -5,12 +5,14 @@ import {
   Text,
   FlatList,
   ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 import { BenefitService } from "../../../../services/benefits/benefit.service";
 import { Benefit } from "../../../../models/benefits/benefit.model";
 import { size } from "lodash";
 import BenefitItem from "./BenefitItem";
 import styles from "../../../initializing/initializing.style";
+import BenefistStyle from "./benefits.style";
 
 export default function Benefits() {
   const TAG = "Benefits";
@@ -36,10 +38,11 @@ export default function Benefits() {
           data={benefits}
           renderItem={(benefit) => <BenefitItem benefit={benefit} />}
           keyExtractor={(item, index) => index.toString()}
-          style={{ padding: 12 }}
+          style={BenefistStyle.listStyle}
+          contentContainerStyle={BenefistStyle.listConteinerStyle}
         />
       ) : (
-        <View style={styles.loading}>
+        <View style={BenefistStyle.loading}>
           <ActivityIndicator size="large" />
           <Text>Cargando beneficios...</Text>
         </View>
