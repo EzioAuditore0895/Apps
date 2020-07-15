@@ -20,7 +20,8 @@ export default function HomeStackNavigator() {
         options={{
           title: "Beneficios",
           headerTitleStyle: { color: "#FFFCFE" },
-          headerStyle: { backgroundColor: "#0C4B9C", height: 130 },
+          headerStyle: { height: 130, backgroundColor: "#0C5FBC" },
+          headerTintColor: "#FFFCFE",
         }}
       />
     </Stack.Navigator>
