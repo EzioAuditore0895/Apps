@@ -19,7 +19,9 @@ export default function BenefitDetail(props: any) {
   const screenWidth = Dimensions.get("window").width;
   const heigth = Dimensions.get("window").height / 4;
   const screenHeigth = Dimensions.get("window").height / 4;
-  navigation.setOptions({ title: title });
+  navigation.setOptions({
+    title: title,
+  });
 
   const [stateVisible, setStateVisible] = useState(false);
 

@@ -15,12 +15,31 @@ import styles from "../../../initializing/initializing.style";
 import { useNavigation } from "@react-navigation/native";
 import BenefistStyle from "./benefits.style";
 
-export default function Benefits() {
+export default function Benefits(props: any) {
   const TAG = "Benefits";
   const benefitService = new BenefitService();
   const [benefits, setBenefits] = useState<Benefit[]>([]);
+  const { route } = props;
+  const { categoryName, name } = route.params;
 
   const navigation = useNavigation();
+
+  navigation.setOptions({
+    headerTitle: (props) => <LogoTitle {...props} />,
+    headerTitleStyle: { color: "#FFFCFE" },
+    headerStyle: { backgroundColor: "#0C4B9C", height: 100 },
+  });
+
+  function LogoTitle() {
+    return (
+      <View style={{ flex: 1 }}>
+        <Text style={{ color: "white", fontSize: 15 }}>Mis beneficios</Text>
+        <Text style={{ color: "white", fontSize: 15 }}>
+          {categoryName} - {name}
+        </Text>
+      </View>
+    );
+  }
 
   useEffect(() => {
     benefitService
