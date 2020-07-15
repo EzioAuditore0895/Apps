@@ -3,6 +3,8 @@ import { View } from "react-native";
 import { Button, Input, Icon, Image } from "react-native-elements";
 import { isEmpty } from "lodash";
 import * as firebase from "firebase";
+import qs from "qs";
+import axios from "axios";
 import styles from "./loginForm.style";
 import Loading from "../../Loading";
 
@@ -18,49 +20,45 @@ export default function LoginForm(props: any) {
       toastRef.current.show("Todos los campos son obligatorios");
     } else {
       setIsLoading(true);
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(formData.user, formData.password)
-        .then(() => {
-          setIsLoading(false);
-          console.log("OK");
-        })
-        .catch(() => {
-          setIsLoading(false);
-          console.log("No login");
-          toastRef.current.show("Email o contraseña incorrectos");
-        });
-      // const body: any = {
-      //   grant_type: "password",
-      //   username: formData.user,
-      //   password: formData.password,
-      // };
-      // const formBody = [];
-      // for (const key in body) {
-      //   var encodedKey = encodeURIComponent(key);
-      //   var encodedValue = encodeURIComponent(body[key]);
-      //   formBody.push(encodedKey + "=" + encodedValue);
-      // }
-      // fetch("https://api.cirmedsa.net:44314/token", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/x-www-form-urlencoded",
-      //   },
-      //   body: formBody.join("&"),
-      // })
-      //   .then((response) => {
-      //     console.log("OK");
-      //     console.log(response);
-      //     return response.json();
-      //   }) // promise
-      //   .then((json) => () => {
-      //     console.log(`${TAG} > login > success > json`, json);
+      // firebase
+      //   .auth()
+      //   .signInWithEmailAndPassword(formData.user, formData.password)
+      //   .then(() => {
       //     setIsLoading(false);
+      //     console.log("OK");
       //   })
       //   .catch(() => {
-      //     console.error(`${TAG} > login > error`);
       //     setIsLoading(false);
+      //     console.log("No login");
+      //     toastRef.current.show("Email o contraseña incorrectos");
       //   });
+
+      const config = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      };
+
+      axios
+        .post(
+          "https://api.cirmedsa.net:44314/token",
+          qs.stringify({
+            grant_type: "password",
+            username: formData.user,
+            password: formData.password,
+          }),
+          config
+        )
+        .then((response) => {
+          console.log(`${TAG} > login > success > response`, response.status);
+          console.log(`${TAG} > login > success > response`, response.data);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.log(`${TAG} > login > error`, error);
+          setIsLoading(false);
+          toastRef.current.show("Usuario o contraseña incorrectos");
+        });
     }
   };
 
