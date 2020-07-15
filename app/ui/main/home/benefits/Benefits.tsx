@@ -12,12 +12,16 @@ import { Benefit } from "../../../../models/benefits/benefit.model";
 import { size } from "lodash";
 import BenefitItem from "./BenefitItem";
 import styles from "../../../initializing/initializing.style";
+import { useNavigation } from "@react-navigation/native";
 import BenefistStyle from "./benefits.style";
 
 export default function Benefits() {
   const TAG = "Benefits";
   const benefitService = new BenefitService();
   const [benefits, setBenefits] = useState<Benefit[]>([]);
+
+  const navigation = useNavigation();
+
   useEffect(() => {
     benefitService
       .getAll()
@@ -36,7 +40,9 @@ export default function Benefits() {
       {size(benefits) > 0 ? (
         <FlatList
           data={benefits}
-          renderItem={(benefit) => <BenefitItem benefit={benefit} />}
+          renderItem={(benefit) => (
+            <BenefitItem benefit={benefit} navigation={navigation} />
+          )}
           keyExtractor={(item, index) => index.toString()}
           style={BenefistStyle.listStyle}
           contentContainerStyle={BenefistStyle.listConteinerStyle}
