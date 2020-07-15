@@ -4,92 +4,186 @@ import {
   Text,
   StyleSheet,
   ImageBackground,
-  Image,
   Dimensions,
   TouchableOpacity,
 } from "react-native";
 import Carousel from "../dashboard/DashboardCarousel";
-import { Divider } from "react-native-elements";
+import { Divider, Image } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-import styles from "./Dashboard.style";
+//import styles from "./Dashboard.style";
+
+const { height, width } = Dimensions.get("window");
+
+var box_count = 3;
+var box_height = height / box_count;
+
+//console.log(height);
+
+/**  */
 
 export default function Dashboard() {
   const navigation = useNavigation();
-  const screenWidth = Dimensions.get("window").width;
-  const images = [
-    "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
-    "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-    "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
-    "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-  ];
-  //console.log("Tamaño", screenWidth);
+  const screenWidth = width;
+
+  const image =
+    "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg";
+
   return (
     <ImageBackground
       source={require("../../../../../assets/home/background_home.png")}
       style={{ flex: 1 }}
     >
       <View style={styles.viewBody}>
-        <View style={styles.viewAgendaConsult}>
-          <TouchableOpacity style={styles.viewMiAgenda}>
-            <Image
-              source={require("../../../../../assets/home/mi_agenda.png")}
-              style={styles.images}
-            />
-            <Text style={{ textAlign: "center", color: "#329BF8" }}>Mi</Text>
-            <Text style={{ textAlign: "center", color: "white" }}>Agenda</Text>
-          </TouchableOpacity>
+        <View style={styles.childOne}>
+          <View style={styles.viewButtons}>
+            <TouchableOpacity style={styles.buttons}>
+              <Image
+                source={require("../../../../../assets/home/mi_agenda.png")}
+                style={styles.images}
+              />
+              <Text style={styles.textTitleOne}>Mi</Text>
+              <Text style={styles.textTitleTwo}>Agenda</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity style={styles.viewMiConsultorio}>
-            <Image
-              source={require("../../../../../assets/home/mi_consultorio.png")}
-              style={styles.images}
-            />
-            <Text style={{ textAlign: "center", color: "#329BF8" }}>Mis</Text>
-            <Text style={{ textAlign: "center", fontSize: 12, color: "white" }}>
-              Consultorios
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.viewProfesionBeneficio}>
-          <TouchableOpacity style={styles.viewMiProfesion}>
-            <Image
-              source={require("../../../../../assets/home/mi_profesion.png")}
-              style={styles.images}
-            />
-            <Text style={{ textAlign: "center", color: "#329BF8" }}>Mis</Text>
-            <Text style={{ textAlign: "center", color: "white" }}>
-              Profesiones
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.viewMiBeneficio}
-            onPress={() => navigation.navigate("benefits")}
-          >
-            <Image
-              source={require("../../../../../assets/home/mi_beneficio.png")}
-              style={styles.images}
-            />
-            <Text style={{ textAlign: "center", color: "#329BF8" }}>Mis</Text>
-            <Text style={{ textAlign: "center", color: "white" }}>
-              Beneficios
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <Divider style={styles.divider} />
-        <View style={styles.viewTitle}>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.name}>Beneficios</Text>
+            <TouchableOpacity style={styles.buttons}>
+              <Image
+                source={require("../../../../../assets/home/mi_consultorio.png")}
+                style={styles.images}
+              />
+              <Text style={styles.textTitleOne}>Mis</Text>
+              <Text style={styles.textTitleTwo}>Consultorios</Text>
+            </TouchableOpacity>
           </View>
-          <Text style={styles.description}>Exclusivos para socios</Text>
+
+          <View style={styles.viewButtons}>
+            <TouchableOpacity style={styles.buttons}>
+              <Image
+                source={require("../../../../../assets/home/mi_profesion.png")}
+                style={styles.images}
+              />
+              <Text style={styles.textTitleOne}>Mis</Text>
+              <Text style={styles.textTitleTwo}>Profesiones</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.buttons}
+              onPress={() => navigation.navigate("benefits")}
+            >
+              <Image
+                source={require("../../../../../assets/home/mi_beneficio.png")}
+                style={styles.images}
+              />
+              <Text style={styles.textTitleOne}>Mis</Text>
+              <Text style={styles.textTitleTwo}>Beneficios</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <Carousel
-          arrayImages={images}
-          height={120}
-          width={screenWidth}
-        ></Carousel>
+        <Divider style={styles.divider} />
+        <View style={styles.childTwo}>
+          <View style={styles.carousel}>
+            <Image
+              source={{ uri: image }}
+              style={{ height: box_height, width: screenWidth }}
+            />
+          </View>
+        </View>
       </View>
     </ImageBackground>
   );
 }
+
+function marginScreenButtons(screenWidth: any) {
+  if (screenWidth > 400) {
+    return 14;
+  } else if (screenWidth > 250) {
+    return 8;
+  } else {
+    return 5;
+  }
+}
+
+function marginScreenDivider(screenWidth: any) {
+  if (screenWidth > 400) {
+    return 40;
+  } else if (screenWidth > 250) {
+    return 25;
+  } else {
+    return 10;
+  }
+}
+
+function fontSize(screenWidth: any) {
+  if (screenWidth > 400) {
+    return 30;
+  } else if (screenWidth > 250) {
+    return 20;
+  } else {
+    return 12;
+  }
+}
+
+const styles = StyleSheet.create({
+  viewBody: {
+    flex: 1,
+  },
+  childOne: {
+    flex: 2.5,
+    justifyContent: "center",
+    marginTop: marginScreenDivider(width),
+    //backgroundColor: "green",
+  },
+  childTwo: {
+    flex: 2,
+    //backgroundColor: "blue",
+  },
+  textTitleOne: {
+    textAlign: "center",
+    color: "#329BF8",
+  },
+  textTitleTwo: {
+    textAlign: "center",
+    color: "white",
+  },
+  divider: {
+    backgroundColor: "#2884DE",
+    marginRight: 40,
+    marginLeft: 40,
+    marginTop: marginScreenButtons(width),
+  },
+  description: {
+    color: "#2884DE",
+  },
+  name: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: fontSize(width),
+  },
+  images: {
+    width: 60,
+    height: 60,
+  },
+  buttons: {
+    width: "40%",
+    flexDirection: "column",
+    backgroundColor: "#0F70CE",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: marginScreenButtons(width),
+    paddingBottom: marginScreenButtons(width),
+    borderRadius: 35,
+    margin: 8,
+  },
+  viewButtons: {
+    height: "50%",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  carousel: {
+    position: "absolute",
+    bottom: 0,
+  },
+  text: {
+    marginLeft: 30,
+    marginBottom: marginScreenButtons(width),
+  },
+});
