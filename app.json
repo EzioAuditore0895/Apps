@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "RNTeleconsultaDoctor",
+    "name": "Círculo Médico",
     "slug": "RNTeleconsultaDoctor",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -21,7 +21,7 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.david.cms"
+      "package": "com.jesusmonte.CMS"
     }
   }
 }

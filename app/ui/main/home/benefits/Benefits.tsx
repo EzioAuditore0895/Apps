@@ -49,7 +49,7 @@ export default function Benefits() {
         />
       ) : (
         <View style={BenefistStyle.loading}>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="large" color="#1552A5" />
           <Text>Cargando beneficios...</Text>
         </View>
       )}

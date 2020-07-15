@@ -9,6 +9,7 @@ import Dialog, {
   DialogFooter,
   DialogButton,
 } from "react-native-popup-dialog";
+import { ScrollView } from "react-native-gesture-handler";
 
 const widthFont = Dimensions.get("window").width;
 
