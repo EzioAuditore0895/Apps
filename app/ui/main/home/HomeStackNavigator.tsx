@@ -41,7 +41,8 @@ export default function HomeStackNavigator() {
         options={{
           title: "Elegir Zona",
           headerTitleStyle: { color: "#FFFCFE" },
-          headerStyle: { backgroundColor: "#0C4B9C", height: 100 },
+          headerStyle: { height: 130, backgroundColor: "#0C5FBC" },
+          headerTintColor: "#FFFCFE",
         }}
       />
       <Stack.Screen name="benefitsdetail" component={BenefitDetail} />
