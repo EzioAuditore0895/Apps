@@ -20,7 +20,7 @@ export default function Benefits(props: any) {
   const benefitService = new BenefitService();
   const [benefits, setBenefits] = useState<Benefit[]>([]);
   const { route } = props;
-  const { categoryName, name } = route.params;
+  const { id, categoryName, name } = route.params;
 
   const navigation = useNavigation();
 
@@ -43,14 +43,17 @@ export default function Benefits(props: any) {
 
   useEffect(() => {
     benefitService
-      .getAll()
+      .getByZoneId(id)
       .then((results) => {
-        console.log(`${TAG} > benefitService > getAll > results`, results);
+        console.log(`${TAG} > benefitService > getByZoneId > results`, results);
         setBenefits(results);
-        console.log(`${TAG} > benefitService > getAll > benefits`, benefits);
+        console.log(
+          `${TAG} > benefitService > getByZoneId > benefits`,
+          benefits
+        );
       })
       .catch(() => {
-        console.error(`${TAG} > benefitService > getAll > error`);
+        console.error(`${TAG} > benefitService > getByZoneId > error`);
       });
   }, []);
 

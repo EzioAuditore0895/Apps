@@ -7,14 +7,17 @@ export class ZoneService extends BaseService<Zone> {
     super("zones");
   }
   getByCategoryId(categoryId: string): Promise<Zone[]> {
-    console.log(`${this.TAG} > getAll`);
+    console.log(`${this.TAG} > getByCategoryId`);
     return new Promise((resolve, reject) => {
-      console.log(`${this.TAG} > getAll > db > Promise`, this.reference);
+      console.log(
+        `${this.TAG} > getByCategoryId > db > Promise`,
+        this.reference
+      );
       db.collection(`${this.reference}`)
         .where(`categories.${categoryId}`, "==", true)
         .get()
         .then((querySnapshot: any) => {
-          // console.log(`${this.TAG} > getAll > querySnapshot`, querySnapshot);
+          // console.log(`${this.TAG} > getByCategoryId > querySnapshot`, querySnapshot);
           const entities: Zone[] = [];
           querySnapshot.forEach((doc: any) => {
             // doc.data() is never undefined for query doc snapshots
@@ -24,7 +27,7 @@ export class ZoneService extends BaseService<Zone> {
           resolve(entities);
         })
         .catch(() => {
-          console.error(`${this.TAG} > getAll > error`);
+          console.error(`${this.TAG} > getByCategoryId > error`);
           reject();
         });
     });
