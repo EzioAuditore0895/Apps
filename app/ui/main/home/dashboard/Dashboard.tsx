@@ -67,7 +67,7 @@ export default function Dashboard() {
 
             <TouchableOpacity
               style={styles.buttons}
-              onPress={() => navigation.navigate("benefits")}
+              onPress={() => navigation.navigate("categories")}
             >
               <Image
                 source={require("../../../../../assets/home/mi_beneficio.png")}

@@ -13,7 +13,7 @@ import { size } from "lodash";
 import BenefitItem from "./BenefitItem";
 import styles from "../../../initializing/initializing.style";
 import { useNavigation } from "@react-navigation/native";
-import BenefistStyle from "./benefits.style";
+import BenefistStyle from "./Benefits.style";
 
 export default function Benefits(props: any) {
   const TAG = "Benefits";

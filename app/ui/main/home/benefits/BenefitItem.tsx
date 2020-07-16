@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 // import styles from "./benefit-item.style";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import styleItems from "./benefit-item.style";
-import styles from "../../../initializing/initializing.style";
+import styleItems from "./BenefitItem.style";
 
 export default function BenefitItem(props: any) {
   const TAG = "BenefitItem";
   const { benefit, navigation } = props;
-  const { url, title, description, discountRate } = benefit.item;
+  const { id, imageUrl, title, description, discountRate } = benefit.item;
   console.log(`${TAG} > benefit`, benefit);
 
   const goBenefitDetail = () => {
     navigation.navigate("benefitsdetail", {
+      id,
       title,
-      url,
+      imageUrl,
       description,
       discountRate,
     });
@@ -22,7 +22,7 @@ export default function BenefitItem(props: any) {
   return (
     <TouchableOpacity onPress={goBenefitDetail}>
       <Image
-        source={{ uri: benefit.item.url }}
+        source={{ uri: benefit.item.imageUrl }}
         style={styleItems.benefitImage}
       />
       <View style={styleItems.benefitView}>

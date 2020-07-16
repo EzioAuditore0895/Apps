@@ -4,8 +4,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Dashboard from "./dashboard/Dashboard";
 import Benefits from "./benefits/Benefits";
 import BenefitDetail from "./benefit-detail/BenefitDetail";
-import BenefitCategory from "./benefit-categories/BenefitCategory";
 import BenefitZone from "./benefit-zones/BenefitZone";
+import Categories from "./categories/Categories";
+import Zones from "./zones/Zones";
 
 const Stack = createStackNavigator();
 
@@ -27,19 +28,19 @@ export default function HomeStackNavigator() {
         // }}
       />
       <Stack.Screen
-        name="benefitCategory"
-        component={BenefitCategory}
+        name="categories"
+        component={Categories}
         options={{
-          title: "Categorias",
+          title: "Categorías",
           headerTitleStyle: { color: "#FFFCFE" },
           headerStyle: { backgroundColor: "#0C4B9C", height: 100 },
         }}
       />
       <Stack.Screen
-        name="benefitZone"
-        component={BenefitZone}
+        name="zones"
+        component={Zones}
         options={{
-          title: "Elegir Zona",
+          title: "Zonas",
           headerTitleStyle: { color: "#FFFCFE" },
           headerStyle: { height: 130, backgroundColor: "#0C5FBC" },
           headerTintColor: "#FFFCFE",
