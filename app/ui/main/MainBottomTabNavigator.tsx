@@ -15,12 +15,14 @@ export default function MainBottomTabNavigator() {
     <Tab.Navigator
       initialRouteName="home"
       tabBarOptions={{
-        inactiveTintColor: "#646464",
-        activeTintColor: "#1552A5",
+        inactiveTintColor: "#A7A7A7",
+        activeTintColor: "#FBFBFB",
         style: {
           borderTopLeftRadius: 15,
           borderTopRightRadius: 15,
-          backgroundColor: "#FBFBFB",
+          backgroundColor: "#1552A5",
+          borderColor: "#fff",
+          borderWidth: 1,
           position: "absolute",
           bottom: 0,
           width: width,

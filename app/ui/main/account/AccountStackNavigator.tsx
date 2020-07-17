@@ -10,7 +10,12 @@ export default function AccountStackNavigator() {
       <Stack.Screen
         name="profile"
         component={Profile}
-        options={{ title: "Perfil" }}
+        options={{
+          title: "Perfil",
+          headerTitleStyle: { color: "#FFFCFE" },
+          headerStyle: { height: 130, backgroundColor: "#0C5FBC" },
+          headerTintColor: "#FFFCFE",
+        }}
       />
     </Stack.Navigator>
   );

@@ -34,6 +34,7 @@ export default function HomeStackNavigator() {
           title: "Categorías",
           headerTitleStyle: { color: "#FFFCFE" },
           headerStyle: { backgroundColor: "#0C4B9C", height: 100 },
+          headerTintColor: "#FFFCFE",
         }}
       />
       <Stack.Screen
