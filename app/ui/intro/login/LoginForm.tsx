@@ -20,25 +20,11 @@ export default function LoginForm(props: any) {
       toastRef.current.show("Todos los campos son obligatorios");
     } else {
       setIsLoading(true);
-      // firebase
-      //   .auth()
-      //   .signInWithEmailAndPassword(formData.user, formData.password)
-      //   .then(() => {
-      //     setIsLoading(false);
-      //     console.log("OK");
-      //   })
-      //   .catch(() => {
-      //     setIsLoading(false);
-      //     console.log("No login");
-      //     toastRef.current.show("Email o contraseña incorrectos");
-      //   });
-
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       };
-
       axios
         .post(
           "https://api.cirmedsa.net:44314/token",
@@ -49,15 +35,26 @@ export default function LoginForm(props: any) {
           }),
           config
         )
-        .then((response) => {
+        .then((response: any) => {
           console.log(`${TAG} > login > success > response`, response.status);
           console.log(`${TAG} > login > success > response`, response.data);
-          setIsLoading(false);
+          firebase
+            .auth()
+            .signInWithEmailAndPassword("sa@likechuck.com", "Zg1ww8QDNnL8Q9gj")
+            .then(() => {
+              setIsLoading(false);
+              console.log(`${TAG} > login > firebase > success`);
+            })
+            .catch(() => {
+              setIsLoading(false);
+              console.log(`${TAG} > login > firebase > error`);
+              toastRef.current.show("Usuario o contraseña incorrectos.");
+            });
         })
-        .catch((error) => {
+        .catch((error: any) => {
           console.log(`${TAG} > login > error`, error);
           setIsLoading(false);
-          toastRef.current.show("Usuario o contraseña incorrectos");
+          toastRef.current.show("Usuario o contraseña incorrectos.");
         });
     }
   };

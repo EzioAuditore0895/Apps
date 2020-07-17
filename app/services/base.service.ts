@@ -3,7 +3,7 @@ import { firebaseApp } from "../services/firebase/firebase.service";
 import firebase from "firebase";
 import "firebase/firestore";
 
-const db = firebase.firestore(firebaseApp);
+export const db = firebase.firestore(firebaseApp);
 
 export class BaseService<T extends Base> {
   TAG: string = "BaseService";

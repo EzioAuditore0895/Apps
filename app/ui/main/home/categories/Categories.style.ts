@@ -10,7 +10,7 @@ const styles = createStyles({
     padding: 20,
   },
   listContainerStyle: {
-    paddingBottom: 80,
+    paddingBottom: 20,
   },
 });
 

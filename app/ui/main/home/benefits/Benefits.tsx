@@ -11,46 +11,71 @@ import { BenefitService } from "../../../../services/benefits/benefit.service";
 import { Benefit } from "../../../../models/benefits/benefit.model";
 import { size } from "lodash";
 import BenefitItem from "./BenefitItem";
-import styles from "../../../initializing/initializing.style";
 import { useNavigation } from "@react-navigation/native";
-import BenefistStyle from "./benefits.style";
+import Styles from "./Benefits.style";
 
-export default function Benefits() {
+export default function Benefits(props: any) {
   const TAG = "Benefits";
   const benefitService = new BenefitService();
-  const [benefits, setBenefits] = useState<Benefit[]>([]);
+  const [benefits, setBenefits] = useState<Benefit[] | null>(null);
+  const { route } = props;
+  const { id, categoryName, name } = route.params;
 
   const navigation = useNavigation();
 
+  navigation.setOptions({
+    headerTitle: (props) => <LogoTitle {...props} />,
+    headerTitleStyle: { color: "#FFFCFE" },
+    headerStyle: { backgroundColor: "#0C4B9C", height: 100 },
+  });
+
+  function LogoTitle() {
+    return (
+      <View style={{ flex: 1 }}>
+        <Text style={{ color: "white", fontSize: 15 }}>Mis beneficios</Text>
+        <Text style={{ color: "white", fontSize: 15 }}>
+          {categoryName} - {name}
+        </Text>
+      </View>
+    );
+  }
+
   useEffect(() => {
     benefitService
-      .getAll()
+      .getByZoneId(id)
       .then((results) => {
-        console.log(`${TAG} > benefitService > getAll > results`, results);
+        console.log(`${TAG} > benefitService > getByZoneId > results`, results);
         setBenefits(results);
-        console.log(`${TAG} > benefitService > getAll > benefits`, benefits);
+        console.log(
+          `${TAG} > benefitService > getByZoneId > benefits`,
+          benefits
+        );
       })
       .catch(() => {
-        console.error(`${TAG} > benefitService > getAll > error`);
+        console.error(`${TAG} > benefitService > getByZoneId > error`);
       });
   }, []);
 
   return (
     <View>
-      {size(benefits) > 0 ? (
+      {benefits && size(benefits) > 0 ? (
         <FlatList
           data={benefits}
           renderItem={(benefit) => (
             <BenefitItem benefit={benefit} navigation={navigation} />
           )}
           keyExtractor={(item, index) => index.toString()}
-          style={BenefistStyle.listStyle}
-          contentContainerStyle={BenefistStyle.listConteinerStyle}
+          style={Styles.listStyle}
+          contentContainerStyle={Styles.listContainerStyle}
         />
-      ) : (
-        <View style={BenefistStyle.loading}>
+      ) : benefits == null ? (
+        <View style={Styles.loading}>
           <ActivityIndicator size="large" />
           <Text>Cargando beneficios...</Text>
+        </View>
+      ) : (
+        <View style={Styles.loading}>
+          <Text>No se encontraron resultados...</Text>
         </View>
       )}
     </View>

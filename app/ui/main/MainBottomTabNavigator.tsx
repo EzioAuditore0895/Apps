@@ -3,6 +3,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "react-native-elements";
 import HomeStackNavigator from "./home/HomeStackNavigator";
 import AccountStackNavigator from "./account/AccountStackNavigator";
+import styles from "../initializing/initializing.style";
+import { Dimensions } from "react-native";
+
+const { width } = Dimensions.get("window");
 
 const Tab = createBottomTabNavigator();
 
@@ -12,7 +16,16 @@ export default function MainBottomTabNavigator() {
       initialRouteName="home"
       tabBarOptions={{
         inactiveTintColor: "#646464",
-        activeTintColor: "#00a680",
+        activeTintColor: "#1552A5",
+        style: {
+          borderTopLeftRadius: 15,
+          borderTopRightRadius: 15,
+          backgroundColor: "#FBFBFB",
+          position: "absolute",
+          bottom: 0,
+          width: width,
+          zIndex: 8,
+        },
       }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => screenOptions(route, color),

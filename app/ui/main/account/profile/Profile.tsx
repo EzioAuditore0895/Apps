@@ -4,8 +4,7 @@ import * as firebase from "firebase";
 
 export default function Profile() {
   return (
-    <View>
-      <Text>Profile...</Text>
+    <View style={{ padding: 40 }}>
       <Button
         title="Cerrar Sesión"
         onPress={() => {

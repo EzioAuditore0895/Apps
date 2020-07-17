@@ -1,16 +1,14 @@
 import { Base } from "../base.model";
 
-export class Benefit extends Base {
-  title: string;
+export class Category extends Base {
+  name: string;
   description: string;
-  discountRate: number;
   imageUrl: string;
 
   constructor() {
     super();
-    this.title = "";
+    this.name = "";
     this.description = "";
-    this.discountRate = 0;
     this.imageUrl = "";
   }
 }
