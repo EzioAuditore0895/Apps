@@ -23,6 +23,16 @@ export default function Zones(props: any) {
         console.log(`${TAG} > zoneService > getAll > results`, results);
         setZones(results);
         console.log(`${TAG} > zoneService > getAll > zones`, zones);
+        if (results?.length == 1) {
+          const zone = results[0];
+          navigation.navigate("benefits", {
+            id: zone.id,
+            name: zone.name,
+            description: zone.description,
+            categoryName: name,
+            imageUrl: "",
+          });
+        }
       })
       .catch(() => {
         console.error(`${TAG} > zoneService > getAll > error`);
