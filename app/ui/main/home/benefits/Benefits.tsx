@@ -70,7 +70,7 @@ export default function Benefits(props: any) {
         />
       ) : benefits == null ? (
         <View style={Styles.loading}>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="large" color="#004A9C" />
           <Text>Cargando beneficios...</Text>
         </View>
       ) : (

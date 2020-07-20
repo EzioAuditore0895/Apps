@@ -34,7 +34,6 @@ export default function HomeStackNavigator() {
           title: "Categorías",
           headerTitleStyle: { color: "#FFFCFE" },
           headerStyle: { backgroundColor: "#0C4B9C", height: 100 },
-          headerTintColor: "#FFFCFE",
         }}
       />
       <Stack.Screen
@@ -47,15 +46,7 @@ export default function HomeStackNavigator() {
           headerTintColor: "#FFFCFE",
         }}
       />
-      <Stack.Screen
-        name="benefitsdetail"
-        component={BenefitDetail}
-        options={{
-          headerTitleStyle: { color: "#FFFCFE" },
-          headerStyle: { height: 130, backgroundColor: "#0C5FBC" },
-          headerTintColor: "#FFFCFE",
-        }}
-      />
+      <Stack.Screen name="benefitsdetail" component={BenefitDetail} />
     </Stack.Navigator>
   );
 }

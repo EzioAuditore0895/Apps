@@ -43,7 +43,7 @@ export default function Zones(props: any) {
         />
       ) : zones == null ? (
         <View style={Styles.loading}>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="large" color="#004A9C" />
           <Text>Cargando zonas...</Text>
         </View>
       ) : (

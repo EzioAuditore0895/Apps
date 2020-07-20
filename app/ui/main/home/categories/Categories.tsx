@@ -44,7 +44,7 @@ export default function Categories() {
         />
       ) : categories == null ? (
         <View style={Styles.loading}>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="large" color="#004A9C" />
           <Text>Cargando categorías...</Text>
         </View>
       ) : (

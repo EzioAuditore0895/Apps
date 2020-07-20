@@ -4,6 +4,7 @@ const styles = createStyles({
   benefitImage: {
     height: 150,
     borderRadius: 10,
+    marginTop: "5%",
   },
   benefitView: {
     flex: 1,
