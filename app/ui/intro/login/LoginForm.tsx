@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { View, AsyncStorage } from "react-native";
 import { Button, Input, Icon, Image } from "react-native-elements";
 import { isEmpty } from "lodash";
 import * as firebase from "firebase";
@@ -42,6 +42,7 @@ export default function LoginForm(props: any) {
             .auth()
             .signInWithEmailAndPassword("sa@likechuck.com", "Zg1ww8QDNnL8Q9gj")
             .then(() => {
+              AsyncStorage.setItem("DoctorEnrollment", formData.user);
               setIsLoading(false);
               console.log(`${TAG} > login > firebase > success`);
             })

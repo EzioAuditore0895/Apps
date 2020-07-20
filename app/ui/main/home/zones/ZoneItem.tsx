@@ -5,7 +5,7 @@ import { Card } from "react-native-elements";
 
 export default function ZoneItem(props: any) {
   const TAG = "ZoneItem";
-  const { zone, navigation, categoryName } = props;
+  const { zone, navigation, categoryId, categoryName } = props;
   const { id, name, description, imageUrl } = zone.item;
   console.log(`${TAG} > zone`, zone);
 
@@ -14,6 +14,7 @@ export default function ZoneItem(props: any) {
       id,
       name,
       description,
+      categoryId,
       categoryName,
       imageUrl,
     });

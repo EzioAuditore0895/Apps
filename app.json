@@ -21,7 +21,7 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.jesusmonte.CMS"
+      "package": "com.likechuck.mobile.teleconsultadoctor"
     }
   }
 }

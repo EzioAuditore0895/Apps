@@ -6,11 +6,15 @@ export class BenefitService extends BaseService<Benefit> {
   constructor() {
     super("benefits");
   }
-  getByZoneId(zoneId: string): Promise<Benefit[]> {
+  getByCategoryIdAndZoneId(
+    categoryId: string,
+    zoneId: string
+  ): Promise<Benefit[]> {
     console.log(`${this.TAG} > getByZoneId`);
     return new Promise((resolve, reject) => {
       console.log(`${this.TAG} > getByZoneId > db > Promise`, this.reference);
       db.collection(`${this.reference}`)
+        .where(`categories.${categoryId}`, "==", true)
         .where(`zones.${zoneId}`, "==", true)
         .get()
         .then((querySnapshot: any) => {

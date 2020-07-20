@@ -45,7 +45,12 @@ export default function Zones(props: any) {
         <FlatList
           data={zones}
           renderItem={(zone) => (
-            <ZoneItem categoryName={name} zone={zone} navigation={navigation} />
+            <ZoneItem
+              categoryId={id}
+              categoryName={name}
+              zone={zone}
+              navigation={navigation}
+            />
           )}
           keyExtractor={(item, index) => index.toString()}
           style={Styles.listStyle}
