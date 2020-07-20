@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Dimensions } from "react-native";
+import { View, Text, Dimensions, AsyncStorage } from "react-native";
 import { BenefitService } from "../../../../services/benefits/benefit.service";
 import { Benefit } from "../../../../models/benefits/benefit.model";
 import { StyleSheet } from "react-native";
@@ -26,6 +26,14 @@ export default function BenefitDetail(props: any) {
   });
 
   const [stateVisible, setStateVisible] = useState(false);
+  const [enrollment, setEnrollment] = useState<string | null>(null);
+
+  useEffect(() => {
+    AsyncStorage.getItem("DoctorEnrollment").then((result) => {
+      setEnrollment(result);
+      console.log(`${TAG} > Settings > enrollment`, enrollment);
+    });
+  }, []);
 
   //console.log("Props>>>>>", url);
   return (
@@ -88,7 +96,9 @@ export default function BenefitDetail(props: any) {
           <DialogContent>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.description}>{description}</Text>
-            <Text style={styles.code}>CM2400031</Text>
+            <Text style={styles.code}>
+              {enrollment ? enrollment : "Código no disponible"}
+            </Text>
             <Text style={styles.txtcode}>!Este es tu código!</Text>
             <Text style={styles.description}>
               Presentalo en caja antes de pagar
