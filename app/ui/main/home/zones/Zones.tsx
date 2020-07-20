@@ -29,6 +29,7 @@ export default function Zones(props: any) {
             id: zone.id,
             name: zone.name,
             description: zone.description,
+            categoryId: id,
             categoryName: name,
             imageUrl: "",
           });
