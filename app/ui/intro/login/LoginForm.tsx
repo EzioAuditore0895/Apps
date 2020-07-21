@@ -20,41 +20,54 @@ export default function LoginForm(props: any) {
       toastRef.current.show("Todos los campos son obligatorios");
     } else {
       setIsLoading(true);
-      const config = {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      };
-      axios
-        .post(
-          "https://api.cirmedsa.net:44314/token",
-          qs.stringify({
-            grant_type: "password",
-            username: formData.user,
-            password: formData.password,
-          }),
-          config
-        )
-        .then((response: any) => {
-          console.log(`${TAG} > login > success > response`, response.status);
-          console.log(`${TAG} > login > success > response`, response.data);
-          firebase
-            .auth()
-            .signInWithEmailAndPassword("sa@likechuck.com", "Zg1ww8QDNnL8Q9gj")
-            .then(() => {
-              AsyncStorage.setItem("DoctorEnrollment", formData.user);
-              setIsLoading(false);
-              console.log(`${TAG} > login > firebase > success`);
-            })
-            .catch(() => {
-              setIsLoading(false);
-              console.log(`${TAG} > login > firebase > error`);
-              toastRef.current.show("Usuario o contraseña incorrectos.");
-            });
-        })
-        .catch((error: any) => {
-          console.log(`${TAG} > login > error`, error);
+      // const config = {
+      //   headers: {
+      //     "Content-Type": "application/x-www-form-urlencoded",
+      //   },
+      // };
+      // axios
+      //   .post(
+      //     "https://api.cirmedsa.net:44314/token",
+      //     qs.stringify({
+      //       grant_type: "password",
+      //       username: formData.user,
+      //       password: formData.password,
+      //     }),
+      //     config
+      //   )
+      //   .then((response: any) => {
+      //     console.log(`${TAG} > login > success > response`, response.status);
+      //     console.log(`${TAG} > login > success > response`, response.data);
+      //     firebase
+      //       .auth()
+      //       .signInWithEmailAndPassword("sa@likechuck.com", "Zg1ww8QDNnL8Q9gj")
+      //       .then(() => {
+      //         AsyncStorage.setItem("DoctorEnrollment", formData.user);
+      //         setIsLoading(false);
+      //         console.log(`${TAG} > login > firebase > success`);
+      //       })
+      //       .catch(() => {
+      //         setIsLoading(false);
+      //         console.log(`${TAG} > login > firebase > error`);
+      //         toastRef.current.show("Usuario o contraseña incorrectos.");
+      //       });
+      //   })
+      //   .catch((error: any) => {
+      //     console.log(`${TAG} > login > error`, error);
+      //     setIsLoading(false);
+      //     toastRef.current.show("Usuario o contraseña incorrectos.");
+      //   });
+      firebase
+        .auth()
+        .signInWithEmailAndPassword("sa@likechuck.com", "Zg1ww8QDNnL8Q9gj")
+        .then(() => {
+          AsyncStorage.setItem("DoctorEnrollment", formData.user);
           setIsLoading(false);
+          console.log(`${TAG} > login > firebase > success`);
+        })
+        .catch(() => {
+          setIsLoading(false);
+          console.log(`${TAG} > login > firebase > error`);
           toastRef.current.show("Usuario o contraseña incorrectos.");
         });
     }
