@@ -3,7 +3,7 @@ import { View, Text, Dimensions, AsyncStorage } from "react-native";
 import { BenefitService } from "../../../../services/benefits/benefit.service";
 import { Benefit } from "../../../../models/benefits/benefit.model";
 import { StyleSheet } from "react-native";
-import { Image, Card, Button, Icon } from "react-native-elements";
+import { Image, Card, Button, Icon, Divider } from "react-native-elements";
 import Dialog, {
   DialogContent,
   DialogFooter,
@@ -85,7 +85,7 @@ export default function BenefitDetail(props: any) {
           footer={
             <DialogFooter>
               <DialogButton
-                text="OK"
+                text="QUIERO MI BENEFICIO"
                 onPress={() => {
                   setStateVisible(false);
                 }}
@@ -94,6 +94,23 @@ export default function BenefitDetail(props: any) {
           }
         >
           <DialogContent>
+            <View
+              style={{
+                flexDirection: "row",
+                marginBottom: 20,
+                alignContent: "center",
+              }}
+            >
+              <Image
+                source={require("../../../../../assets/avatar/Avatar.jpg")}
+                style={{ width: 60, height: 60, borderRadius: 60 }}
+              ></Image>
+              <View>
+                <Text style={styles.datosMed}>JUAN PEREZ</Text>
+                <Text style={styles.datosMed}>MATRÍCULA :</Text>
+              </View>
+            </View>
+            <Divider style={{ borderColor: "blue" }}></Divider>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.description}>{description}</Text>
             <Text style={styles.code}>
@@ -142,6 +159,11 @@ function fontSizeDescription(screenWidth: any) {
 }
 
 const styles = StyleSheet.create({
+  datosMed: {
+    marginLeft: 10,
+    marginTop: 5,
+    fontWeight: "bold",
+  },
   parentView: {
     flex: 1,
   },
