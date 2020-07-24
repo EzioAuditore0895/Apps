@@ -13,6 +13,7 @@ import { size } from "lodash";
 import BenefitItem from "./BenefitItem";
 import { useNavigation } from "@react-navigation/native";
 import Styles from "./Benefits.style";
+import { HeaderBackButton } from "@react-navigation/stack";
 
 export default function Benefits(props: any) {
   const TAG = "Benefits";
@@ -27,6 +28,7 @@ export default function Benefits(props: any) {
     headerTitle: (props) => <LogoTitle {...props} />,
     headerTitleStyle: { color: "#FFFCFE" },
     headerStyle: { backgroundColor: "#0C4B9C", height: 100 },
+    headerTintColor: "#FFFCFE",
   });
 
   function LogoTitle() {
@@ -50,6 +52,15 @@ export default function Benefits(props: any) {
           `${TAG} > benefitService > getByZoneId > benefits`,
           benefits
         );
+        if (id == "sinzona") {
+          navigation.setOptions({
+            headerLeft: () => (
+              <HeaderBackButton
+                onPress={() => navigation.navigate("categories")}
+              />
+            ),
+          });
+        }
       })
       .catch(() => {
         console.error(`${TAG} > benefitService > getByZoneId > error`);
